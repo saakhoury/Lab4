@@ -75,15 +75,15 @@ ARCHITECTURE SimpleCircuit OF LogicalStep_Lab4_top IS
   end component;		
   
   component State_Machine port (
-			clk_input, reset, enable, blink, NS, EW																				: IN std_logic;
+			clk_input, reset, enable, blink_sig, NS, EW																				: IN std_logic;
 			state_number																													: OUT std_logic_vector(3 downto 0);
-			NS_clear, NS_cross, NS_amber, NS_green, NS_red, EW_clear, EW_cross, EW_amber, EW_green, EW_red	   : OUT std_logic
+			NS_clear, NS_crossing, NS_amber, NS_green, NS_red, EW_clear, EW_crossing, EW_amber, EW_green, EW_red	   : OUT std_logic
   );
   end component;		
  
 ----------------------------------------------------------------------------------------------------
 	CONSTANT	sim_mode																: boolean := FALSE;  -- set to FALSE for LogicalStep board downloads																						-- set to TRUE for SIMULATIONS
-	SIGNAL rst, rst_n_filtered, synch_rst									: std_logic;
+	SIGNAL rst, rst_n_filtered, sync_rst									: std_logic;
 	SIGNAL sm_clken, blink_sig													: std_logic; 
 	SIGNAL pb_n_filtered, pb													: std_logic_vector(3 downto 0); 
 	SIGNAL NS_red, NS_green, NS_amber, EW_red, EW_green, EW_amber  : std_logic;
@@ -96,25 +96,25 @@ BEGIN
 ----------------------------------------------------------------------------------------------------
 INST0: pb_filters			port map (clkin_50, rst_n, rst_n_filtered, pb_n, pb_n_filtered);
 INST1: pb_inverters		port map (rst_n_filtered, rst, pb_n_filtered, pb);
-INST2: synchronizer     port map (clkin_50,synch_rst, rst, synch_rst);	-- the synchronizer is also reset by synch_rst.
-INST3: clock_generator 	port map (sim_mode, synch_rst, clkin_50, sm_clken, blink_sig);
+INST2: synchronizer     port map (clkin_50,sync_rst, rst, sync_rst);	-- the synchronizer is also reset by synch_rst.
+INST3: clock_generator 	port map (sim_mode, sync_rst, clkin_50, sm_clken, blink_sig);
 
 INST4: synchronizer		port map (clkin_50, sync_rst, pb(0), sync_input_NS);
 INST5: synchronizer 		port map (clkin_50, sync_rst, pb(1), sync_input_EW);
 
--- INST4: holding_register		port map (clkin_50, rst, NS_clear, sync_input_NS, NS);
--- INST5: holding_register 	port map (clkin_50, rst, EW_clear, sync_input_EW, EW);
+ INST6: holding_register		port map (clkin_50, rst, NS_clear, sync_input_NS, NS);
+ INST7: holding_register 	port map (clkin_50, rst, EW_clear, sync_input_EW, EW);
 
-INST6: holding_register port map (clkin_50, sync_rest, '0', sync_input_NS, NS);
+--INST6: holding_register port map (clkin_50, sync_rst, '0', sync_input_NS, NS);
 
---INST6: State_Machine port map (clkin_50, sm_clken, pb(3), blink_sig, NS, EW, NS_clear, leds(0), NS_green, NS_amber, NS_red);
+INST8: State_Machine port map (clkin_50, sync_rst, sm_clken, blink_sig, NS, EW, leds(7 downto 4), NS_clear, leds(0), NS_amber, NS_green, NS_red, EW_clear, leds(2), EW_amber, EW_green, EW_red);
+--
+--INST7: holding_register port map (clkin_50, sync_rst, '0', sync_input_EW, EW);
 
-INST7: holding_register port map (clkin_50, sync_rest, '0', sync_input Ew, EW);
-
---INST7: segment7_mux 	port map (clkin_50, NS_7segment, EW_7segment, seg7_data, seg7_char2, seg7_char1);
-
--- NS_7segment (6 downto 0) >= NS_red & "00" & NS_amber & "00" & NS_green;
--- EW_7segment (6 downto 0) >= EW_red & "00" & EW_amber & "00" & EW_green;
+ NS_7segment (6 downto 0) <= NS_amber & "00" & NS_green & "00" & NS_red;
+ EW_7segment (6 downto 0) <= EW_amber & "00" & EW_green & "00" & EW_red;
+ 
+ INST9: segment7_mux 	port map (clkin_50, NS_7segment, EW_7segment, seg7_data, seg7_char2, seg7_char1);
 
 leds(1) <= NS;
 leds(3) <= EW;

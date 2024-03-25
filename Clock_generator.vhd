@@ -76,5 +76,3 @@ sm_clken	<= clk_reg_extend(0) AND (NOT(clk_reg_extend(1)));
 blink 	<= blink_sig;
 
 end rtl;
-
-

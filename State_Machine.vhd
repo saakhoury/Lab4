@@ -13,7 +13,7 @@ END ENTITY;
 
 Architecture SM of State_Machine is
 
-TYPE STATE_NAMES IS (S0, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15);
+TYPE STATE_NAMES IS (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15);
 SIGNAL current_state, next_state	:  STATE_NAMES;     	-- signals of type STATE_NAMES
 SIGNAL state_counter	:	unsigned(3 downto 0) := "0000";
 
@@ -30,7 +30,7 @@ Register_Section: PROCESS (clk_input)  -- this process updates with a clock
 BEGIN
 	IF(rising_edge(clk_input)) THEN
 		IF (reset = '1') THEN
-			current_state <= S0;
+			current_state <= s0;
 		ELSIF (reset = '0' and enable = '1') THEN
 			current_state <= next_State;
 		END IF;
@@ -47,14 +47,14 @@ BEGIN
   CASE current_state IS
         WHEN s0=>		
 				IF(EW = '1' and NS = '0') THEN
-					next_state <= S6;
+					next_state <= s6;
 				ELSE
 					next_state <=s1;
 				END IF;
 
          WHEN s1=>		
 			IF(EW = '1' and NS = '0') THEN
-					next_state <= S6;
+					next_state <= s6;
 			ELSE
 					next_state<=s2;
 			END IF;
@@ -68,7 +68,7 @@ BEGIN
          WHEN s4 =>
 					next_state<=s5;
 
-         WHEN S5 =>
+         WHEN s5 =>
 					next_state<=s6;
 
          WHEN s6 =>
@@ -111,7 +111,7 @@ Decoder_Section: PROCESS (current_state, blink_sig)
 BEGIN
      CASE current_state IS
 	  
-         WHEN S0 | s1 =>
+         WHEN s0 | s1 =>
 				NS_green <= blink_sig;
 				NS_amber <= '0';
 				NS_red <= '0';
@@ -125,9 +125,9 @@ BEGIN
 				EW_crossing <= '0';
 				
 			WHEN s2 | s3 | s4 | s5 =>
-				NS_green <= '0';
+				NS_green <= '1';
 				NS_amber <= '0';
-				NS_red <= '1';
+				NS_red <= '0';
 				NS_clear <= '0';
 				NS_crossing <= '1';
 				
@@ -139,8 +139,8 @@ BEGIN
 			
 			WHEN s6 =>
 				NS_green <= '0';
-				NS_amber <= '0';
-				NS_red <= '1';
+				NS_amber <= '1';
+				NS_red <= '0';
 				NS_clear <= '1';
 				NS_crossing <= '0';
 				
@@ -176,7 +176,7 @@ BEGIN
 				EW_clear <= '0';
 				EW_crossing <= '0';
 				
-			WHEN S10 | s11 | S12 | S13 =>
+			WHEN s10 | s11 | s12 | s13 =>
 				NS_green <= '0';
 				NS_amber <= '0';
 				NS_red <= '1';
@@ -189,7 +189,7 @@ BEGIN
 				EW_clear <= '0';
 				EW_crossing <= '1';
 				
-			WHEN S14 =>
+			WHEN s14 =>
 				NS_green <= '0';
 				NS_amber <= '0';
 				NS_red <= '1';
@@ -202,7 +202,7 @@ BEGIN
 				EW_clear <= '1';
 				EW_crossing <= '0';
 				
-			WHEN S15 =>
+			WHEN s15 =>
 				NS_green <= '0';
 				NS_amber <= '0';
 				NS_red <= '1';
@@ -236,7 +236,7 @@ BEGIN
 				WHEN s8 =>
 					state_number <= "1000";
 				WHEN s9 =>
-					state_number <= "0001";
+					state_number <= "1001";
 				WHEN s10 =>
 					state_number <= "1010";
 				WHEN s11 =>

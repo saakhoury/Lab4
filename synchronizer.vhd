@@ -20,7 +20,7 @@ BEGIN
 		process(clk) is
 		begin
 		
-		if(rising_dge(clk)) then
+		if(rising_edge(clk)) then
 		
 		sreg(1) <= sreg(0);
 		sreg(0) <= din;

@@ -8,7 +8,7 @@ entity PB_inverters is port (
  	pb_n_filtered			: in  std_logic_vector (3 downto 0);
 	pb				: out	std_logic_vector(3 downto 0)							 
 ); 
-end PB_inverters;
+end PB_inverters; -- functionality is to invert the output of the buttons to active high from active low
 
 architecture ckt of PB_inverters is
 

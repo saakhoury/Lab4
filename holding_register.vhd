@@ -10,7 +10,7 @@ entity holding_register is port (
 			din			: in std_logic;
 			dout			: out std_logic
   );
- end holding_register;
+ end holding_register; -- functionality is to hold synchronized button input values until cleared
  
  architecture circuit of holding_register is
 
@@ -21,6 +21,7 @@ BEGIN
 	process(clk) is
 	begin
 	if(rising_edge(clk)) then
+		-- sreg value is held on until it receives a clear signal after din
 		sreg<= (din OR sreg) AND NOT register_clr;
 		if(reset='1') then
 			sreg<= '0';

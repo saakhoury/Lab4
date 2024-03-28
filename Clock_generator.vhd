@@ -1,5 +1,9 @@
 -- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
 -- GROUP 1 SESSION 205
+
+-- This file serves to generate various clock signals, including state machine clock enables and blinking indicators,
+-- based on an input clock and the operating mode, facilitating simulation or operation with a LogicalStep Board.
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

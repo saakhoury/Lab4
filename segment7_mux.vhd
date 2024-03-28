@@ -51,12 +51,12 @@ use IEEE.numeric_std.all;
 
 entity segment7_mux is
    port (
-          clk        : in  std_logic := '0';
-			 DIN2 		: in  std_logic_vector(6 downto 0);	
+          		 clk        	: in  std_logic := '0';
+			 DIN2		: in  std_logic_vector(6 downto 0);	
 			 DIN1 		: in  std_logic_vector(6 downto 0);
-			 DOUT			: out	std_logic_vector(6 downto 0);
-			 DIG2			: out	std_logic;
-			 DIG1			: out	std_logic
+			 DOUT		: out	std_logic_vector(6 downto 0);
+			 DIG2		: out	std_logic;
+			 DIG1		: out	std_logic
         );
 end entity segment7_mux;
 

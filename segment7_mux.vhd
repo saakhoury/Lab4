@@ -1,3 +1,6 @@
+-- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
+-- GROUP 1 SESSION 205
+
 --*****************************************************************************
 --*  Copyright (C) 2016 by Trevor Smouter
 --*

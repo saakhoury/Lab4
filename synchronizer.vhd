@@ -1,6 +1,7 @@
 -- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
 -- GROUP 1 SESSION 205
 
+-- This file serves as a synchronizer module designed to synchronize asynchronous button inputs with a clock signal using D flip-flops
 library ieee;
 use ieee.std_logic_1164.all;
 

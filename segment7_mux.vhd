@@ -1,6 +1,10 @@
 -- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
 -- GROUP 1 SESSION 205
 
+-- This VHDL code defines a multiplexer (`segment7_mux`) for a 7-segment display, where two sets of input data (`DIN1` and `DIN2`) are multiplexed 
+-- based on a toggle signal generated from a clock (`clk`). The output data (`DOUT`) is selected from either of the input data sets based 
+-- on the toggle signal, and the multiplexer also controls which digit is currently being displayed (`DIG1` and `DIG2`).
+
 --*****************************************************************************
 --*  Copyright (C) 2016 by Trevor Smouter
 --*

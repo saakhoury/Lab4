@@ -5,9 +5,9 @@ use ieee.std_logic_1164.all;
 entity PB_filters is port (
 	clkin				: in std_logic;
 	rst_n				: in std_logic;
-	rst_n_filtered	: out std_logic;
+	rst_n_filtered			: out std_logic;
  	pb_n				: in  std_logic_vector (3 downto 0);
-	pb_n_filtered	: out	std_logic_vector(3 downto 0)							 
+	pb_n_filtered			: out	std_logic_vector(3 downto 0)							 
 	); 
 end PB_filters;
 

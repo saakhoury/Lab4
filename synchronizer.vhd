@@ -9,7 +9,7 @@ entity synchronizer is port (
 			din			: in std_logic;
 			dout			: out std_logic
   );
- end synchronizer;
+ end synchronizer; -- functionality is to take asynchronous button inputs and synchronize them with clock 
  
  
 architecture circuit of synchronizer is
@@ -21,15 +21,16 @@ BEGIN
 		begin
 		
 		if(rising_edge(clk)) then
-		
-		sreg(1) <= sreg(0);
-		sreg(0) <= din;
-		
-		if (reset = '1') then
-			sreg(0) <= '0';
-			sreg(1) <= '0';
+		-- the output of the D-flipflop is represented by sreg
+		-- the output ('Q') acts as the input of the next D-flipflop
+			sreg(1) <= sreg(0);
+			sreg(0) <= din;
+			-- set both outputs to 0 when reset 
+			if (reset = '1') then
+				sreg(0) <= '0';
+				sreg(1) <= '0';
+			end if;
 		end if;
-	end if;
 	end process;
 	dout <= sreg(1);
 end;

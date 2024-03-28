@@ -1,5 +1,9 @@
 -- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
 -- GROUP 1 SESSION 205
+
+-- This file serves as the top-level module for a LogicalStep Lab 4 project, managing interactions with FPGA components including clock input,
+-- reset, push-buttons, switches, LEDs, and a 7-segment display, integrating sub-components for traffic light control and display.
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;

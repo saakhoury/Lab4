@@ -4,9 +4,9 @@ use ieee.numeric_std.all;
 
 Entity State_Machine IS Port
 (
- clk_input, reset, enable, blink_sig, NS, EW																			: IN std_logic;
- state_number																												: OUT std_logic_vector(3 downto 0);
- NS_clear, NS_crossing, NS_amber, NS_green, NS_red, EW_clear, EW_crossing, EW_amber, EW_green, EW_red	: OUT std_logic
+ 	clk_input, reset, enable, blink_sig, NS, EW																			: IN std_logic;
+	state_number																												: OUT std_logic_vector(3 downto 0);
+ 	NS_clear, NS_crossing, NS_amber, NS_green, NS_red, EW_clear, EW_crossing, EW_amber, EW_green, EW_red	: OUT std_logic
  );
 END ENTITY;
  
@@ -15,7 +15,7 @@ Architecture SM of State_Machine is
 
 TYPE STATE_NAMES IS (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15);
 SIGNAL current_state, next_state	:  STATE_NAMES;     	-- signals of type STATE_NAMES
-SIGNAL state_counter	:	unsigned(3 downto 0) := "0000";
+SIGNAL state_counter			:  unsigned(3 downto 0) := "0000";
 
 BEGIN
  
@@ -46,11 +46,11 @@ Transition_Section: PROCESS (current_state)
 BEGIN
   CASE current_state IS
         WHEN s0=>		
-				IF(EW = '1' and NS = '0') THEN
-					next_state <= s6;
-				ELSE
-					next_state <=s1;
-				END IF;
+			IF(EW = '1' and NS = '0') THEN
+				next_state <= s6;
+			ELSE
+				next_state <=s1;
+			END IF;
 
          WHEN s1=>		
 			IF(EW = '1' and NS = '0') THEN
@@ -76,32 +76,33 @@ BEGIN
 
          WHEN s7 =>
 					next_state<=s8;
-			WHEN s8 =>
-				if(EW = '0' and NS = '1') then
-					next_state <= s14;
-				else
-					next_state <= s9;
-				end if;
-			WHEN s9 =>
-				if(EW = '0' and NS = '1') then
-					next_state <= s14;
-				else
-					next_state <= s10;
-				end if;
-			WHEN s10 => 
-				next_state <= s11;
-			WHEN s11 =>
-				next_state <= s12;
-			WHEN s12 =>
-				next_state <= s13;
-			WHEN s13 =>
+	 WHEN s8 =>
+			IF (EW = '0' and NS = '1') THEN
 				next_state <= s14;
-			WHEN s14 =>
-				next_state <= s15;
-			WHEN s15 =>
-				next_state <= s0;
-			END CASE;
-		END PROCESS;
+			ELSE
+				next_state <= s9;
+			END IF;
+	WHEN s9 =>
+			IF(EW = '0' and NS = '1') THEN
+				next_state <= s14;
+			ELSE
+				next_state <= s10;
+			END IF;
+				
+	WHEN s10 => 
+					next_state <= s11;
+	WHEN s11 =>
+					next_state <= s12;
+	WHEN s12 =>
+					next_state <= s13;
+	WHEN s13 =>
+					next_state <= s14;
+	WHEN s14 =>
+					next_state <= s15;
+	WHEN s15 =>
+					next_state <= s0;
+	END CASE;
+	END PROCESS;
  
 
 -- DECODER SECTION PROCESS EXAMPLE (MOORE FORM SHOWN)

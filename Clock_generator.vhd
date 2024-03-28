@@ -12,7 +12,7 @@ entity Clock_generator is
 	port
 	(
 		 sim_mode			: in boolean;	-- used to select the clocking frequency for the output signals "sm_clken" and "blink".
-		 reset				: in std_logic; -- reset input signal
+		 reset				: in std_logic; 
        		 clkin      			: in std_logic; -- input used for counter and register clocking
 		 sm_clken			: out std_logic; -- output used to enbl the sm to advance by 1 clk.
 		 blink		  		: out std_logic  -- output used for blink signal (1/4 the rate of the sm_clken)

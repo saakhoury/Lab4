@@ -1,5 +1,7 @@
 -- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
 -- GROUP 1 SESSION 205
+
+-- This file implements a state machine for controlling traffic signals based on inputs from pedestrian request buttons and a clock signal.
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

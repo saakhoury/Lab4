@@ -1,5 +1,9 @@
 -- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
 -- GROUP 1 SESSION 205
+
+-- This file defines a holding register (`holding_register`) that captures and holds synchronized button input values (`din`) until a clear signal 
+-- (`register_clr`)is received, with the output (`dout`) reflecting the stored value, and it also includes functionality to reset the register 
+-- (`reset` signal).
 library ieee;
 use ieee.std_logic_1164.all;
 

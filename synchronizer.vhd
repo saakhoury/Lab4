@@ -5,9 +5,9 @@ use ieee.std_logic_1164.all;
 entity synchronizer is port (
 
 			clk			: in std_logic;
-			reset		: in std_logic;
+			reset			: in std_logic;
 			din			: in std_logic;
-			dout		: out std_logic
+			dout			: out std_logic
   );
  end synchronizer;
  

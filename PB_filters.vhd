@@ -1,3 +1,5 @@
+-- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
+-- GROUP 1 SESSION 205
 library ieee;
 use ieee.std_logic_1164.all;
 

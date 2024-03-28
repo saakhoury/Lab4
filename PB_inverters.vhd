@@ -1,5 +1,7 @@
 -- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
 -- GROUP 1 SESSION 205
+
+-- This file serves to invert the output of the buttons from active low to active high.
 library ieee;
 use ieee.std_logic_1164.all;
 

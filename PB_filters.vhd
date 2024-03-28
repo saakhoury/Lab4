@@ -1,5 +1,9 @@
 -- TEAM MEMBERS: PEARL NATALIA, SANSKRITI AKHOURY
 -- GROUP 1 SESSION 205
+
+-- This file serves to implement a filter module (`PB_filters`) designed to filter and synchronize input signals for a Physical Button (PB) 
+-- interface in a digital system.
+
 library ieee;
 use ieee.std_logic_1164.all;
 
